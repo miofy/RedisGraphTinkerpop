@@ -1,37 +1,31 @@
 package org.apache.tinkerpop.gremlin.redis.structure;
 
 import org.apache.tinkerpop.gremlin.structure.Element;
-import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Property;
 
-import java.util.Iterator;
+public abstract class RedisElement implements Element {
+    String id;
+    String label;
+    RedisGraph graph;
 
-public class RedisElement implements Element {
+    public RedisElement(String id, String label, RedisGraph graph) {
+        this.id = id;
+        this.label = label;
+        this.graph = graph;
+    }
+
     public Object id() {
-        return null;
+        return this.id;
     }
 
     public String label() {
-        return null;
+        return this.label;
     }
 
-    public Graph graph() {
-        return null;
-    }
-
-    public <V> Property<V> property(String key) {
-        return null;
-    }
-
-    public <V> Property<V> property(String s, V v) {
-        return null;
+    public RedisGraph graph() {
+        return this.graph;
     }
 
     public void remove() {
 
-    }
-
-    public <V> Iterator<? extends Property<V>> properties(String... strings) {
-        return null;
     }
 }

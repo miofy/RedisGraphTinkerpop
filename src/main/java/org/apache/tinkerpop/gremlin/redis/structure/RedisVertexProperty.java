@@ -9,43 +9,53 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RedisVertexProperty<V> implements VertexProperty<V> {
+    protected RedisVertex vertex;
+    protected String key;
+    protected V value;
+
+    public RedisVertexProperty(final RedisVertex vertex, final String key, final V value) {
+        this.vertex = vertex;
+        this.key = key;
+        this.value = value;
+    }
+
     public String key() {
-        return null;
+        return this.key;
     }
 
     public V value() throws NoSuchElementException {
-        return null;
+        return this.value;
     }
 
     public boolean isPresent() {
-        return false;
+        return null != this.value;
     }
 
     public Vertex element() {
-        return null;
+        return this.vertex;
     }
 
     public Graph graph() {
-        return null;
+        return this.vertex.graph();
     }
 
     public String label() {
-        return null;
+        return this.vertex.label();
     }
 
     public void remove() {
-
+        throw new UnsupportedOperationException("yet to support property removal");
     }
 
     public Object id() {
-        return null;
+        return this.vertex.id();
     }
 
     public <V> Property<V> property(String s, V v) {
-        return null;
+        throw new UnsupportedOperationException("yet to support property set");
     }
 
     public <U> Iterator<Property<U>> properties(String... strings) {
-        return null;
+
     }
 }
