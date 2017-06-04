@@ -56,6 +56,6 @@ public class RedisVertexProperty<V> implements VertexProperty<V> {
     }
 
     public <U> Iterator<Property<U>> properties(String... strings) {
-
+        throw new UnsupportedOperationException("yet to support property set");
     }
 }

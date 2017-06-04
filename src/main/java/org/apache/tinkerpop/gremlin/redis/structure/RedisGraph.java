@@ -5,10 +5,10 @@ import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.tinkerpop.gremlin.process.computer.GraphComputer;
 import org.apache.tinkerpop.gremlin.structure.*;
-import org.apache.tinkerpop.gremlin.structure.Graph.Features.GraphFeatures;
 import com.redislabs.redisgraph.RedisGraphAPI;
-import org.apache.tinkerpop.gremlin.structure.util.FeatureDescriptor;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -16,6 +16,7 @@ public class RedisGraph implements Graph {
     RedisGraphAPI redisGraphAPI;
     String id;
     protected Features features = new RedisGraphFeatures();
+    public static final Logger LOGGER = LoggerFactory.getLogger(RedisGraph.class);
 
     private static final Configuration EMPTY_CONFIGURATION = new BaseConfiguration() {{
         this.setProperty(Graph.GRAPH, RedisGraph.class.getName());
@@ -44,7 +45,6 @@ public class RedisGraph implements Graph {
 
             // Discard first element
             Object[] attr = Arrays.copyOfRange(objects, 1, objects.length);
-
             RedisNode node = this.redisGraphAPI.createLabeledNode(label, attr);
             vertex = new RedisVertex(this, node);
         }
