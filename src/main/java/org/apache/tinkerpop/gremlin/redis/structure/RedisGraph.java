@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+@Graph.OptIn(Graph.OptIn.SUITE_STRUCTURE_STANDARD)
 public class RedisGraph implements Graph {
     RedisGraphAPI redisGraphAPI;
     String id;
@@ -21,6 +22,14 @@ public class RedisGraph implements Graph {
     private static final Configuration EMPTY_CONFIGURATION = new BaseConfiguration() {{
         this.setProperty(Graph.GRAPH, RedisGraph.class.getName());
     }};
+
+    public static RedisGraph open() {
+        return new RedisGraph("tinkerpop");
+    }
+
+    public static RedisGraph open(final Configuration configuration) {
+        return new RedisGraph("tinkerpop");
+    }
 
     public RedisGraph(String id) {
         this.id = id;
